@@ -2,7 +2,10 @@ import React from 'react'
 
 const StepForm = () => {
   return (
-    <div>StepForm</div>
+    <div className='bg-red-600 h-full  rounded-lg'>
+        
+    
+    </div>
   )
 }
 
