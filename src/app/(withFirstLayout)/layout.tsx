@@ -1,14 +1,16 @@
+import Providers from "@/lib/providers/Providers";
+import { Toaster } from "sonner";
 
-const layout = ({children} : {children : React.ReactNode}) => {
+const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
-    
-    <div className="min-h-screen">
-{children}
-    </div>
-    
-    </>
-  )
-}
+    <Providers>
+      <div className="min-h-screen">
+        <Toaster position="top-center" richColors />
 
-export default layout
+        {children}
+      </div>
+    </Providers>
+  );
+};
+
+export default layout;
