@@ -4,11 +4,13 @@ import { tagTypes } from "../tag-Types";
 const formApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     submitform: builder.mutation({
-      query: (data) => ({
+      query: (data) => {
+        console.log(data)
+        return {
         url: '/forms/create',
         method: 'POST',
-        body: data,
-      }),
+        data: data,
+      }},
       invalidatesTags: [tagTypes.forms]
     }),
     

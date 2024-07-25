@@ -15,7 +15,7 @@ instance.interceptors.response.use(
     // Do something with response data
     const responseObject: ResponseSuccessType = {
       data: response?.data?.data,
-    
+  
     };
     return responseObject;
   },

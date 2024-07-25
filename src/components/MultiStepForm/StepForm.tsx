@@ -1,24 +1,28 @@
 "use client";
 import React from "react";
+import PersonalInfoForm from "./StepForms/PersonalInfoForm";
+import TravelPreferencesForm from "./StepForms/TravelPreferencesForm";
+import HealthSafetyForm from "./StepForms/HealthSafetyForm";
+import { useAppSelector } from "@/redux/hooks";
 
 const StepForm = () => {
-    const currentStep = 1
+  const currentStep = useAppSelector((state)=> state.form.currentStep)
 
     const renderFormByStep = (step:number)=> {
         switch (step) {
             case 1:
-              return <p>Personal Information</p>;
+              return <PersonalInfoForm/>;
             case 2:
-              return <p>Travel Preferences</p>;
+              return <TravelPreferencesForm/>;
             case 3:
-              return <p>Health and Safety</p>;
+              return <HealthSafetyForm/>;
             default:
               return null;
           }
     }
 
   return (
-    <div className="bg-red-600 h-full rounded-lg">
+    <div className="h-full rounded-lg">
      {renderFormByStep(currentStep)}
     </div>
   );

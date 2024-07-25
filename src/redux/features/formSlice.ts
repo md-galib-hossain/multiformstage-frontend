@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type TEmergencyContact = {
   name: string;
@@ -8,73 +8,84 @@ export type TEmergencyContact = {
 
 export type PersonalInformation = {
   fullName: string;
-  dateOfBirth: Date;
+  dateOfBirth:  any;
   nationality: string;
   email: string;
   phone: string;
 };
 
 export type TTravelPreferences = {
-  departureDate?: Date;
-  returnDate?: Date;
+  departureDate?: any;
+  returnDate?: any;
   accommodationPreference?: string;
   specialRequests?: string;
 };
 
 export type THealthAndSafety = {
-  healthDeclaration: 'Yes' | 'No';
+  healthDeclaration: "Yes" | "No";
   emergencyContactInformation: TEmergencyContact;
   medicalConditions?: string;
 };
 
 export type TForm = {
-  personalInformation: PersonalInformation;
-  travelPreferences: TTravelPreferences;
-  healthAndSafety: THealthAndSafety;
+  formData: {
+    personalInformation: PersonalInformation;
+    travelPreferences: TTravelPreferences;
+    healthAndSafety: THealthAndSafety;
+  };
 };
 
-const initialState: TForm = {
-  personalInformation: {
-    fullName: '',
-    dateOfBirth: new Date(),
-    nationality: '',
-    email: '',
-    phone: '',
-  },
-  travelPreferences: {
-    departureDate: new Date(),
-    returnDate: new Date(),
-    accommodationPreference: '',
-    specialRequests: '',
-  },
-  healthAndSafety: {
-    healthDeclaration: 'No',
-    emergencyContactInformation: {
-      name: '',
-      relationship: '',
-      phone: '',
+const initialState: TForm & { currentStep: number } = {
+  currentStep: 1,
+  formData: {
+    personalInformation: {
+      fullName: "",
+      dateOfBirth: "",
+      nationality: "",
+      email: "",
+      phone: "",
     },
-    medicalConditions: '',
+    travelPreferences: {
+      departureDate:"",
+      returnDate: "",
+      accommodationPreference: "",
+      specialRequests: "",
+    },
+    healthAndSafety: {
+      healthDeclaration: "No",
+      emergencyContactInformation: {
+        name: "",
+        relationship: "",
+        phone: "",
+      },
+      medicalConditions: "",
+    },
   },
 };
 
 const formSlice = createSlice({
-  name: 'form',
+  name: "form",
   initialState,
   reducers: {
-    setPersonalInformation: (state, action: PayloadAction<PersonalInformation>) => {
-      state.personalInformation = action.payload;
+    setCurrentStep: (state, action: PayloadAction<number>) => {
+      state.currentStep = action.payload;
     },
-    setTravelPreferences: (state, action: PayloadAction<TTravelPreferences>) => {
-      state.travelPreferences = action.payload;
+    resetForm: (state) => {
+      state.formData = initialState.formData;
+      state.currentStep = 1;
     },
-    setHealthAndSafety: (state, action: PayloadAction<THealthAndSafety>) => {
-      state.healthAndSafety = action.payload;
+    resetFormToInitialState: () => initialState,
+
+    updateFormData: (state, action: PayloadAction<Partial<TForm["formData"]>>) => {
+      console.log(action.payload)
+      state.formData = {
+        ...state.formData,
+        ...action.payload,
+      };
     },
-    resetForm: () => initialState,
   },
 });
 
-export const { setPersonalInformation, setTravelPreferences, setHealthAndSafety, resetForm } = formSlice.actions;
+export const { setCurrentStep, resetForm, updateFormData,resetFormToInitialState } = formSlice.actions;
 
 export default formSlice.reducer;
