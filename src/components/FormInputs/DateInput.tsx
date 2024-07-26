@@ -1,11 +1,13 @@
 import React from "react";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Calendar } from "../ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Controller, useFormContext } from "react-hook-form";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import { Controller, useFormContext } from "react-hook-form";
+import { Label } from "../ui/label";
 
 // Extend dayjs with the UTC plugin
 dayjs.extend(utc);
@@ -27,7 +29,7 @@ const DatePicker = ({
     <Controller
       name={name}
       control={control}
-      defaultValue={dayjs(new Date()).format("DD/MM/YYYY")}
+      defaultValue=""
       render={({
         field: { onChange, value, ...field },
         fieldState: { error },
@@ -43,34 +45,33 @@ const DatePicker = ({
           
           <Popover>
             <PopoverTrigger asChild>
-              <div className="flex">
-                {/* Input field for displaying the selected date */}
-                <Input
-                  {...field}
-                  type="text"
-                  name={name}
-                  id={name}
-                  value={value ? dayjs(new Date(value)).format("DD/MM/YYYY") : ""}
-                  readOnly
-                  className="cursor-pointer block rounded-none w-full border-0 border-b-2 focus:border-gray-500 py-2 text-gray-900 placeholder:text-gray-400 focus-visible:ring-0 sm:text-sm sm:leading-6 dark:bg-transparent dark:text-slate-100"
-                  placeholder={
-                    value
-                      ? dayjs(new Date(value)).format("DD/MM/YYYY")
-                      : `Select ${label.toLowerCase()}`
-                  }
-                />
-              </div>
+              <Button
+                variant={"outline"}
+                className="justify-start text-left block rounded-none w-full border-0 border-b-2 focus:border-gray-500 py-2 text-gray-900 
+                placeholder:text-gray-400 focus-visible:ring-0
+                sm:text-sm sm:leading-6 dark:bg-transparent dark:text-slate-100"
+                disabled={!value}
+              >
+                <div className="flex place-items-center">
+                <CalendarIcon className="mr-2 h-4 w-4 text-gray-500" />
+                {value && !isNaN(new Date(value).getTime())
+                  ? format(new Date(value), "PPP")
+                  : <span className="text-gray-500">Pick a date</span>}
+                  </div>
+              </Button>
             </PopoverTrigger>
             
             <PopoverContent className="w-auto p-0" align="start">
               {/* Calendar component for date selection */}
               <Calendar
+                mode="single"
+                selected={value ? new Date(value) : undefined}
+                onSelect={(date) => {
+                  onChange(date);
+                }}
                 captionLayout="dropdown-buttons"
                 fromYear={1990}
                 toYear={2024}
-                selected={value}
-                onSelect={(date) => onChange(date)}
-                mode="single"
                 disabled={(date) =>
                   name === "dateOfBirth" ? date > new Date() : date < new Date()
                 }

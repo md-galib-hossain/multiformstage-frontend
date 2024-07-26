@@ -2,6 +2,9 @@ import type { Config } from "tailwindcss"
 
 const config = {
   darkMode: ["class"],
+  daisyui: {
+    themes: ["light", "dark", "cupcake","cyberpunk"],
+  },
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',

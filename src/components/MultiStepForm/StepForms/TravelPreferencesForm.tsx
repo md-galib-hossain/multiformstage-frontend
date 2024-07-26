@@ -24,8 +24,8 @@ const TravelPreferencesForm = () => {
   const dispatch = useAppDispatch();
 
   const defaultValues = {
-    departureDate: formData.travelPreferences?.departureDate ? new Date(formData.travelPreferences.departureDate) : new Date(),
-    returnDate: formData.travelPreferences?.returnDate ? new Date(formData.travelPreferences.returnDate) : new Date(),
+    departureDate:  new Date(formData.travelPreferences.departureDate) || new Date(),
+    returnDate:  new Date(formData.travelPreferences.returnDate) || new Date(),
     accommodationPreference: formData.travelPreferences?.accommodationPreference || "",
     specialRequests: formData.travelPreferences?.specialRequests || "",
   };

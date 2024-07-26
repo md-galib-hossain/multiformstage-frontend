@@ -14,13 +14,14 @@ type TFormConfig = {
 type TFormProps = {
   onSubmit: SubmitHandler<FieldValues>;
   children: ReactNode;
+  className? : string
 } & TFormConfig;
 
 const CustomForm = ({
   onSubmit,
   children,
   defaultValues,
-  resolver,
+  resolver,className=""
 }: TFormProps) => {
   // Config object for useForm
   const formConfig: TFormConfig = {};
@@ -46,7 +47,7 @@ const CustomForm = ({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(submit)}>
+      <form onSubmit={methods.handleSubmit(submit)} className={className}>
         {children}
       </form>
     </FormProvider>

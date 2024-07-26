@@ -26,16 +26,22 @@ const NavButtons = ({ disabled }: NavButtonsProps) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center mt-5">
-      <Button
-        disabled={disabled}
-        onClick={handleReset}
-        variant="link"
-        className="inline-flex items-center px-5 py-2 mt-4 sm:mt-6 text-sm font-medium text-center rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700"
-      >
-        Clear Form
-      </Button>
-      <div className="flex gap-2 items-center">
+    <div className="flex justify-between items-center mt-5">
+      {/* Container for the Clear Form button */}
+      {currentStep > 1 && (
+        <div className="flex-shrink-0">
+          <Button
+            disabled={disabled}
+            onClick={handleReset}
+            variant="link"
+            className="inline-flex items-center px-5 py-2 mt-4 sm:mt-6 text-sm font-medium text-center rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700"
+          >
+            Clear Form
+          </Button>
+        </div>
+      )}
+      {/* Container for Previous and Submit buttons */}
+      <div className="flex gap-2 items-center ml-auto">
         {currentStep > 1 && (
           <Button
             disabled={disabled}

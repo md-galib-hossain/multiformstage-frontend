@@ -45,9 +45,9 @@ const HealthSafetyForm = () => {
         toast.success(
           `Dear ${formData.personalInformation.fullName}, your submission is confirmed. Check your email for details.`
         );
+        dispatch(resetFormToInitialState());
       }
 
-      dispatch(resetFormToInitialState());
     } catch (error) {
       console.error(error);
       toast.error("An error occurred. Please try again.");
