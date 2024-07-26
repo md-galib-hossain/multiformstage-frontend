@@ -9,7 +9,7 @@ const formApi = baseApi.injectEndpoints({
         return {
         url: '/forms/create',
         method: 'POST',
-        data: data,
+        body: data,
       }},
       invalidatesTags: [tagTypes.forms]
     }),

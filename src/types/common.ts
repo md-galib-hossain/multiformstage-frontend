@@ -1,20 +1,25 @@
+export type TErrorSource = {
+  path: string;
+  message: string;
+};
 
-
-  
-  
-
-  
-  export type ResponseSuccessType = {
-    data: any;
-  };
-  
-  export type IGenericErrorResponse = {
+export type TErrorDetails = {
+  success: boolean;
+  message: string;
+  errorSources: TErrorSource[];
+  err: {
     statusCode: number;
-    message: string;
-    errorMessages: IGenericErrorMessage[];
   };
-  
-  export type IGenericErrorMessage = {
-    path: string | number;
-    message: string;
-  };
+  stack?: string;
+};
+
+export type TError = {
+  status: number;
+  data: TErrorDetails;
+};
+export type TResponse<T> = {
+  success?: boolean;
+  message?: string;
+  data?: T;
+  error?: TError;
+};

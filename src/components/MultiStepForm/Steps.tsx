@@ -1,28 +1,33 @@
 import Step from "./Step";
-import sideimg from '@/assets/sideimgnew.jpg';
+import Image from "next/image";
+import sideimg from '@/assets/sidebar.jpg';
 
 export type TStep = {
-number : number;
-title : string
+  number: number;
+  title: string;
 }
 
-const Steps = ({ steps }: {steps : TStep[]}) => {
+interface StepsProps {
+  steps: TStep[];
+}
+
+const Steps: React.FC<StepsProps> = ({ steps }) => {
   return (
-    <div
-      style={{
-        backgroundImage: `url(${sideimg.src})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-      className="
-        rounded-lg col-span-full md:col-span-4 p-10
-        flex flex-row md:flex-col
-        justify-center md:justify-center gap-6 flex-wrap md:h-full items-center lg:items-start
-      "
-    >
-      {steps.map((step: any, i: number) => (
-        <Step key={i} step={step} />
-      ))}
+    <div className="relative rounded-lg col-span-full md:col-span-4 p-10 md:h-full">
+      <Image
+        src={sideimg}
+        alt="Side Image"
+        layout="fill"
+        objectFit="cover"
+        objectPosition="center"
+        className="rounded-lg"
+      />
+      <div className="relative z-10 flex flex-row md:flex-col justify-center gap-6 flex-wrap md:h-full items-center lg:items-start">
+        {steps.map((step, i) => (
+          <Step key={i} step={step} />
+        ))}
+      </div>
+      <div className="absolute inset-0 bg-black opacity-30 rounded-lg"></div> {/* Optional: Add an overlay */}
     </div>
   );
 };

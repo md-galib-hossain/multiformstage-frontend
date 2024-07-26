@@ -16,24 +16,29 @@ type TFormProps = {
   children: ReactNode;
 } & TFormConfig;
 
-const PHForm = ({
+const CustomForm = ({
   onSubmit,
   children,
   defaultValues,
   resolver,
 }: TFormProps) => {
+  // Config object for useForm
   const formConfig: TFormConfig = {};
 
+  // Add defaultValues to formConfig if provided
   if (defaultValues) {
-    formConfig['defaultValues'] = defaultValues;
+    formConfig.defaultValues = defaultValues;
   }
 
+  // Add resolver to formConfig if provided
   if (resolver) {
-    formConfig['resolver'] = resolver;
+    formConfig.resolver = resolver;
   }
 
+  // Initialize useForm with the config
   const methods = useForm(formConfig);
 
+  // Submit handler to call the provided onSubmit and reset the form
   const submit: SubmitHandler<FieldValues> = (data) => {
     onSubmit(data);
     methods.reset();
@@ -41,11 +46,11 @@ const PHForm = ({
 
   return (
     <FormProvider {...methods}>
-      <form  onSubmit={methods.handleSubmit(submit)}>
+      <form onSubmit={methods.handleSubmit(submit)}>
         {children}
       </form>
     </FormProvider>
   );
 };
 
-export default PHForm;
+export default CustomForm;
