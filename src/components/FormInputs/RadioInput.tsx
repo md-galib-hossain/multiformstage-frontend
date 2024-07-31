@@ -42,7 +42,7 @@ const RadioInput = ({
                     defaultValue={value}
                     onChange={(value) => onChange(value)}
                     {...field}
-                    className="flex space-x-4"
+                    className="flex space-x-4 "
                   >
                     {options.map((option) => (
                       <div
@@ -77,7 +77,7 @@ const RadioInput = ({
                 >
                   {options.map((option) => (
                     <div key={option.id} className="flex items-center space-x-2">
-                      <RadioGroupItem value={option.title} id={option.title} />
+                      <RadioGroupItem value={option.title} id={option.title}/>
                       <p className={`ml-2 ${value === option.title ? 'font-semibold text-gray-900 text-sm' : 'font-medium text-gray-600 text-sm'}`}>
                         {option.title}
                       </p>
