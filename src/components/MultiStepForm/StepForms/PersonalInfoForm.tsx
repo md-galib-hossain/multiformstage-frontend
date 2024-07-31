@@ -54,7 +54,7 @@ const PersonalInfoForm = () => {
     >
       {isClient ? (
         <div className="flex flex-col justify-between h-full">
-          <>
+          <div>
             <div className="mb-2">
               <h5 className="text-lg md:text-2xl font-bold text-gray-900 dark:text-white">
                 Personal info
@@ -70,7 +70,7 @@ const PersonalInfoForm = () => {
 
               <TextInput label="Your Country of Residence" name="nationality" />
             </div>
-          </>
+          </div>
           {}
           <div className="pb-8 flex justify-end">
             <NavButtons />

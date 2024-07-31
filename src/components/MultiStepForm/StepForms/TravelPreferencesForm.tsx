@@ -60,7 +60,7 @@ const TravelPreferencesForm = () => {
     >
       {isClient && (
       <div className="flex flex-col justify-between h-full">
-          <>
+          <div>
           <div className="mb-2">
             <h5 className="text-lg md:text-2xl font-bold text-gray-900 dark:text-white">
               Travel Preferences
@@ -77,7 +77,7 @@ const TravelPreferencesForm = () => {
             />
             <TextInput label="Special Requests" name="specialRequests" />
           </div>
-        </>
+        </div>
         <div className="pb-8 flex justify-center md:justify-end">
 
           <NavButtons />

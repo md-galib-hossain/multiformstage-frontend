@@ -70,7 +70,7 @@ const HealthSafetyForm = () => {
     >
       {isClient && (
         <div className="flex flex-col justify-between h-full">
-          <>
+          <div>
             <div className="mb-2">
               <h5 className="text-lg md:text-2xl font-bold text-gray-900 dark:text-white">
                 Health and Safety
@@ -97,7 +97,7 @@ const HealthSafetyForm = () => {
                 name="emergencyContactInformation.phone"
               />
             </div>
-          </>
+          </div>
           <div className="pb-8 flex justify-center md:justify-end">
             <NavButtons disabled={isLoading} />
           </div>
