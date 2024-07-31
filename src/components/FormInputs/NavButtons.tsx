@@ -26,7 +26,7 @@ const NavButtons = ({ disabled }: NavButtonsProps) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row justify-center md:justify-between items-center mt-5">
+    <div className="flex flex-col-reverse md:flex-row justify-center md:justify-between items-center mt-5">
       {/* Container for the Clear Form button */}
       {currentStep > 1 && (
         <div className="flex-shrink-0">
@@ -41,7 +41,7 @@ const NavButtons = ({ disabled }: NavButtonsProps) => {
         </div>
       )}
       {/* Container for Previous and Submit buttons */}
-      <div className="flex gap-2 items-center ml-auto">
+      <div className="flex flex-col sm:flex-row gap-2 items-center ml-auto">
         {currentStep > 1 && (
           <Button
             disabled={disabled}
