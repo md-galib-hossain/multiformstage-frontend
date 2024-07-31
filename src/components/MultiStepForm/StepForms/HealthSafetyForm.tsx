@@ -72,7 +72,7 @@ const HealthSafetyForm = () => {
         <div className="flex flex-col justify-between h-full">
           <>
             <div className="mb-2">
-              <h5 className="text-2xl font-bold text-gray-900 dark:text-white">
+              <h5 className="text-lg md:text-2xl font-bold text-gray-900 dark:text-white">
                 Health and Safety
               </h5>
               <p>Please provide your Health and Safety information.</p>

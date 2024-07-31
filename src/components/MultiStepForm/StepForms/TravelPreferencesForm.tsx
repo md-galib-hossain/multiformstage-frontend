@@ -62,7 +62,7 @@ const TravelPreferencesForm = () => {
       <div className="flex flex-col justify-between h-full">
           <>
           <div className="mb-2">
-            <h5 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h5 className="text-lg md:text-2xl font-bold text-gray-900 dark:text-white">
               Travel Preferences
             </h5>
             <p>Please provide your travel preferences.</p>
