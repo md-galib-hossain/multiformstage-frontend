@@ -34,7 +34,7 @@ const NavButtons = ({ disabled }: NavButtonsProps) => {
             disabled={disabled}
             onClick={handleReset}
             variant="link"
-            className="inline-flex items-center px-5 py-2 mt-4 sm:mt-6 text-sm font-medium text-center rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700"
+            className="inline-flex items-center px-5 py-2 text-sm font-medium text-center rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 dark:bg-blue-600 dark:hover:bg-blue-700"
           >
             Clear Form
           </Button>
@@ -47,7 +47,7 @@ const NavButtons = ({ disabled }: NavButtonsProps) => {
             disabled={disabled}
             onClick={handlePrevious}
             type="button"
-            className="relative inline-flex items-center px-5 py-2 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-slate-900 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-700"
+            className="relative inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-slate-900 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-700"
           >
             <ChevronLeft className="w-5 h-5 mr-2" />
             <span>Previous</span>
@@ -61,7 +61,7 @@ const NavButtons = ({ disabled }: NavButtonsProps) => {
         <Button
           disabled={disabled}
           type="submit"
-          className="relative inline-flex items-center px-5 py-2 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-slate-900 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-700"
+          className="relative inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-slate-900 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-700"
         >
           <span className="relative z-10">
             {currentStep === 3 ? "Confirm and Submit" : "Save and Continue"}
