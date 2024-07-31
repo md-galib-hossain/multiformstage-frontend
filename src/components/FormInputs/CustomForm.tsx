@@ -47,8 +47,13 @@ const CustomForm = ({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(submit)} className={className}>
+    
+
+    
+      <form onSubmit={methods.handleSubmit(submit)} className="h-full">
+
         {children}
+
       </form>
     </FormProvider>
   );

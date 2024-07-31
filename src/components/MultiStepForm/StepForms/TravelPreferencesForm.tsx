@@ -24,9 +24,11 @@ const TravelPreferencesForm = () => {
   const dispatch = useAppDispatch();
 
   const defaultValues = {
-    departureDate:  new Date(formData.travelPreferences.departureDate) || new Date(),
-    returnDate:  new Date(formData.travelPreferences.returnDate) || new Date(),
-    accommodationPreference: formData.travelPreferences?.accommodationPreference || "",
+    departureDate:
+      new Date(formData.travelPreferences.departureDate) || new Date(),
+    returnDate: new Date(formData.travelPreferences.returnDate) || new Date(),
+    accommodationPreference:
+      formData.travelPreferences?.accommodationPreference || "",
     specialRequests: formData.travelPreferences?.specialRequests || "",
   };
 
@@ -57,9 +59,10 @@ const TravelPreferencesForm = () => {
       resolver={zodResolver(TravelPreferencesValidationSchema)}
     >
       {isClient && (
-        <>
-          <div className="mb-8">
-            <h5 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">
+      <div className="flex flex-col justify-between h-full">
+          <>
+          <div className="mb-2">
+            <h5 className="text-2xl font-bold text-gray-900 dark:text-white">
               Travel Preferences
             </h5>
             <p>Please provide your travel preferences.</p>
@@ -74,8 +77,12 @@ const TravelPreferencesForm = () => {
             />
             <TextInput label="Special Requests" name="specialRequests" />
           </div>
-          <NavButtons />
         </>
+        <div className="pb-8 flex justify-center md:justify-end">
+
+          <NavButtons />
+        </div>
+      </div>
       )}
     </CustomForm>
   );

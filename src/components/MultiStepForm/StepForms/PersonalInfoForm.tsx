@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -34,10 +32,11 @@ const PersonalInfoForm = () => {
     fullName: formData.personalInformation?.fullName || "",
     email: formData.personalInformation?.email || "",
     phone: formData.personalInformation?.phone || "",
-    dateOfBirth: new Date(formData.personalInformation?.dateOfBirth) || new Date(),
+    dateOfBirth:
+      new Date(formData.personalInformation?.dateOfBirth) || new Date(),
     nationality: formData.personalInformation?.nationality || "",
   };
-  
+
   async function onSubmit(data: any) {
     try {
       dispatch(updateFormData({ personalInformation: data }));
@@ -54,25 +53,29 @@ const PersonalInfoForm = () => {
       resolver={zodResolver(personalInfoValidationSchema)}
     >
       {isClient ? (
-        <>
-          <div className="mb-8">
-            <h5 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">
-              Personal info
-            </h5>
-            <p>Please provide your Personal Informations.</p>
+        <div className="flex flex-col justify-between h-full">
+          <>
+            <div className="mb-2">
+              <h5 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Personal info
+              </h5>
+              <p>Please provide your Personal Informations.</p>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <TextInput label="Full Name" name="fullName" />
+              <DatePicker label="Date of Birth" name="dateOfBirth" />
+              <TextInput label="Email Address" name="email" type="email" />
+
+              <TextInput label="Phone Number" name="phone" type="tel" />
+
+              <TextInput label="Your Country of Residence" name="nationality" />
+            </div>
+          </>
+          {}
+          <div className="pb-8 flex justify-end">
+            <NavButtons />
           </div>
-          <div className="grid gap-2 sm:grid-cols-2">
-            <TextInput label="Full Name" name="fullName" />
-            <DatePicker label="Date of Birth" name="dateOfBirth" />
-            <TextInput label="Email Address" name="email" type="email" />
-
-            <TextInput label="Phone Number" name="phone" type="tel"/>
-
-            <TextInput label="Your Country of Residence" name="nationality" />
-          </div>
-
-          <NavButtons />
-        </>
+        </div>
       ) : null}
     </CustomForm>
   );

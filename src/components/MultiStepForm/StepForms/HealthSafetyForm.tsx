@@ -2,7 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { resetFormToInitialState, updateFormData } from "@/redux/features/formSlice";
+import {
+  resetFormToInitialState,
+  updateFormData,
+} from "@/redux/features/formSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
 import NavButtons from "@/components/FormInputs/NavButtons";
 import TextInput from "@/components/FormInputs/TextInput";
@@ -25,7 +28,8 @@ const HealthSafetyForm = () => {
 
   const defaultValues = {
     healthDeclaration: formData.healthAndSafety.healthDeclaration || "Yes",
-    emergencyContactInformation: formData.healthAndSafety.emergencyContactInformation || {
+    emergencyContactInformation: formData.healthAndSafety
+      .emergencyContactInformation || {
       name: "",
       relationship: "",
       phone: "",
@@ -37,8 +41,8 @@ const HealthSafetyForm = () => {
     try {
       dispatch(updateFormData({ healthAndSafety: data }));
       const updatedFormData = { ...formData, healthAndSafety: data };
-      const res = await submitForm(updatedFormData) as TResponse<any>;
-      
+      const res = (await submitForm(updatedFormData)) as TResponse<any>;
+
       if (res?.error) {
         toast.error(res.error.data.message);
       } else if (res?.data) {
@@ -47,7 +51,6 @@ const HealthSafetyForm = () => {
         );
         dispatch(resetFormToInitialState());
       }
-
     } catch (error) {
       console.error(error);
       toast.error("An error occurred. Please try again.");
@@ -66,35 +69,39 @@ const HealthSafetyForm = () => {
       resolver={zodResolver(HealthandSafetyValidationSchema)}
     >
       {isClient && (
-        <>
-          <div className="mb-8">
-            <h5 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white">
-              Health and Safety
-            </h5>
-            <p>Please provide your Health and Safety information.</p>
+        <div className="flex flex-col justify-between h-full">
+          <>
+            <div className="mb-2">
+              <h5 className="text-2xl font-bold text-gray-900 dark:text-white">
+                Health and Safety
+              </h5>
+              <p>Please provide your Health and Safety information.</p>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <TextInput label="Medical Conditions" name="medicalConditions" />
+              <RadioInput
+                label="Health Declaration"
+                name="healthDeclaration"
+                options={options}
+              />
+              <TextInput
+                label="Emergency Contact Name"
+                name="emergencyContactInformation.name"
+              />
+              <TextInput
+                label="Relation with Contact"
+                name="emergencyContactInformation.relationship"
+              />
+              <TextInput
+                label="Emergency Contact Number"
+                name="emergencyContactInformation.phone"
+              />
+            </div>
+          </>
+          <div className="pb-8 flex justify-center md:justify-end">
+            <NavButtons disabled={isLoading} />
           </div>
-          <div className="grid gap-2 sm:grid-cols-2">
-            <TextInput label="Medical Conditions" name="medicalConditions" />
-            <RadioInput
-              label="Health Declaration"
-              name="healthDeclaration"
-              options={options}
-            />
-            <TextInput
-              label="Emergency Contact Name"
-              name="emergencyContactInformation.name"
-            />
-            <TextInput
-              label="Relation with Contact"
-              name="emergencyContactInformation.relationship"
-            />
-            <TextInput
-              label="Emergency Contact Number"
-              name="emergencyContactInformation.phone"
-            />
-          </div>
-          <NavButtons disabled={isLoading} />
-        </>
+        </div>
       )}
     </CustomForm>
   );

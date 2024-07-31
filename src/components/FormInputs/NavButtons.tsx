@@ -26,7 +26,7 @@ const NavButtons = ({ disabled }: NavButtonsProps) => {
   };
 
   return (
-    <div className="flex justify-between items-center mt-5">
+    <div className="flex flex-col md:flex-row justify-center md:justify-between items-center mt-5">
       {/* Container for the Clear Form button */}
       {currentStep > 1 && (
         <div className="flex-shrink-0">
