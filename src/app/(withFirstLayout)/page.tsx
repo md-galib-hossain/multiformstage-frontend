@@ -32,7 +32,7 @@ const Homepage = () => {
     <div className="bg-slate-200 min-h-screen p-4 flex justify-center items-center">
       {/* Render the form only on client-side */}
       {isClient && (
-        <div className="mx-auto w-full max-w-4xl p-4 sm:p-4 md:p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 grid grid-cols-12 gap-4 min-h-[690px]">
+        <div className="mx-auto w-full max-w-4xl p-4 sm:p-4 md:p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 grid grid-cols-12 gap-4 min-h-[670px]">
           {/* Steps component */}
        
           <div className="col-span-12 md:col-span-4">
